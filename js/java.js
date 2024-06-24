@@ -2,9 +2,13 @@ const menuEmail = document.querySelector('.navbar-email')
 const desktopMenu = document.querySelector('.desktop-menu')
 const menuHamIcon = document.querySelector('.menu')
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart')
+const productDetailIconClose = document.querySelector('.product-detail-close')
+
+
 const mobileMenu = document.querySelector('.mobile-menu')
 
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer')
+const productDetailConteined = document.querySelector('#productDetail')
 const cardsContiner = document.querySelector('.cards-container')
 
 
@@ -12,6 +16,7 @@ const cardsContiner = document.querySelector('.cards-container')
 menuEmail.addEventListener('click', toggleDesktopMenu)
 menuHamIcon.addEventListener('click', toggleMobileMenu)
 menuCarritoIcon.addEventListener('click', toggleCarritoMenu)
+productDetailIconClose.addEventListener('click', closeProductDetailAside)
 
 function toggleDesktopMenu (){
     desktopMenu.classList.toggle('inactive')
@@ -23,6 +28,9 @@ function toggleMobileMenu(){
     if (!IsAsideClose) {
         shoppingCartContainer.classList.add('inactive')
        }
+
+       closeProductDetailAside()
+
     mobileMenu.classList.toggle('inactive')
 }
 
@@ -32,6 +40,13 @@ function toggleCarritoMenu (){
     if (!IsMobileMenuClosed) {
         mobileMenu.classList.add('inactive')
        }
+
+     const IsProductDetailClose = productDetailConteined.classList.contains('inactive')
+
+    if (!IsProductDetailClose) {
+        productDetailConteined.classList.add('inactive')
+        }
+
        shoppingCartContainer.classList.toggle('inactive')
  }
 
@@ -40,6 +55,7 @@ function toggleCarritoMenu (){
 const productList = []
 
 
+//automatizar el envio de datos.
 productList.push({
     name: 'bike',
     price: 120,
@@ -67,7 +83,7 @@ function renderProducts (arr){
     
         const productImg = document.createElement('img')
         productImg.setAttribute('src', product.imagen)
-        productImg.addEventListener('click', console.log('mmm'))
+        productImg.addEventListener('click', openProductDetailAside)
     
         const productInfo = document.createElement('div')
         productInfo.classList.add('product-card') 
@@ -102,3 +118,14 @@ function renderProducts (arr){
 
 
 renderProducts(productList)
+
+
+function openProductDetailAside (){
+
+    shoppingCartContainer.classList.add('inactive')
+    productDetailConteined.classList.remove('inactive')
+}
+
+function closeProductDetailAside (){
+    productDetailConteined.classList.add('inactive')
+}
