@@ -129,3 +129,5 @@ function openProductDetailAside (){
 function closeProductDetailAside (){
     productDetailConteined.classList.add('inactive')
 }
+
+//probando si los commits estan funcionando.
